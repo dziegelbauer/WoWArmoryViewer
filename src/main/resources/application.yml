@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          battlenet:
+            authorization-grant-type: client_credentials
+            client-id: 4c129af2795342f283e3d3f98dfe406f
+            client-secret: RjHozaAXDLSAJdghW1LWDNWNbcxiONRh
+
+        provider:
+          battlenet:
+            token-uri: https://us.battle.net/oauth/token
+
+battlenet:
+  client-id: 4c129af2795342f283e3d3f98dfe406f
+  client-secret: RjHozaAXDLSAJdghW1LWDNWNbcxiONRh
