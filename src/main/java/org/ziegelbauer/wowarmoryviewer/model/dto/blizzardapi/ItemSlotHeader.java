@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ItemSlotHeader {
     @JsonProperty("type")
-    private String slotType;
+    private ItemSlot slotType;
     @JsonProperty("name")
     private String name;
 }

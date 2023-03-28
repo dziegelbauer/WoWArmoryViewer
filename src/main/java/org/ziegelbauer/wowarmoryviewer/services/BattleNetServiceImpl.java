@@ -26,17 +26,6 @@ public class BattleNetServiceImpl implements BattleNetService {
 
     @Override
     public EquipmentApiResponse getCharacterEquipment(String realmSlug, String name) {
-//        try (var responseFile = new BufferedReader(new FileReader("C:\\Users\\dzieg\\Documents\\projects\\java\\WoWArmoryViewer\\api_samples\\character_equipment\\response.json"))) {
-//            StringBuilder sb = new StringBuilder();
-//            for (String line : responseFile.lines().toList()) {
-//                sb.append(line);
-//            }
-//            var responseString = sb.toString();
-//            return mapper.readValue(responseString, EquipmentApiResponse.class);
-//        } catch(Exception e) {
-//            return null;
-//        }
-
         try {
             var query = UriComponentsBuilder
                     .fromHttpUrl("https://us.api.blizzard.com")
@@ -54,6 +43,7 @@ public class BattleNetServiceImpl implements BattleNetService {
                     .build();
 
             var response = webClient.send(request, HttpResponse.BodyHandlers.ofString());
+            //String data = response.body();
 
             return mapper.readValue(response.body(), EquipmentApiResponse.class);
         } catch(Exception e) {

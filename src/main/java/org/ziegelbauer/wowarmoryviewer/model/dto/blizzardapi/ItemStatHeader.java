@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ItemStatHeader {
     @JsonProperty("type")
-    private String statType;
+    private StatType statType;
     @JsonProperty("name")
     private String name;
 }

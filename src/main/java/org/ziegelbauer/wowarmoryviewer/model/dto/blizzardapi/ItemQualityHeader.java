@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ItemQualityHeader {
     @JsonProperty("type")
-    private String qualityType;
+    private ItemQuality qualityType;
     @JsonProperty("name")
     private String name;
 }

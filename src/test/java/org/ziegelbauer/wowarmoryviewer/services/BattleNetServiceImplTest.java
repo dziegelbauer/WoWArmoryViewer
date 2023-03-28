@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BattleNetProfileWebServiceTest {
+class BattleNetServiceImplTest {
     @Autowired
-    BattleNetServiceImpl bnps;
+    BattleNetServiceImpl battleNetService;
 
     @Test
     void getCharacterEquipment() {
-        var equip = bnps.getCharacterEquipment("thrall", "naelran");
+        var equip = battleNetService.getCharacterEquipment("thrall", "naelran");
 
         assert equip != null;
     }
