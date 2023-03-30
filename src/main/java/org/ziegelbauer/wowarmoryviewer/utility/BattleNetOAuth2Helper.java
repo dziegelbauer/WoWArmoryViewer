@@ -1,7 +1,6 @@
 package org.ziegelbauer.wowarmoryviewer.utility;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -33,12 +32,9 @@ public class BattleNetOAuth2Helper {
     }
 
     private boolean isValid() {
-        if(accessToken == null
-        || expires == null
-        || expires.isBefore(LocalDateTime.now())) {
-            return false;
-        }
-        return true;
+        return accessToken != null
+                && expires != null
+                && !expires.isBefore(LocalDateTime.now());
     }
 
     private void refreshToken() throws URISyntaxException, IOException, InterruptedException {
@@ -59,7 +55,7 @@ public class BattleNetOAuth2Helper {
         try {
             token = mapper.readValue(jsonString, OAuth2Token.class);
         } catch (Exception e) {
-            System.out.println(e.toString());
+            System.out.println(e);
             token = null;
         }
 

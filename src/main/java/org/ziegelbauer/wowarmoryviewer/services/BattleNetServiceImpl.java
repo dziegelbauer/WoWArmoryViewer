@@ -10,6 +10,7 @@ import org.ziegelbauer.wowarmoryviewer.utility.BattleNetOAuth2Helper;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class BattleNetServiceImpl implements BattleNetService {
@@ -71,15 +72,15 @@ public class BattleNetServiceImpl implements BattleNetService {
             var responseString = webClient.send(locationRequest, HttpResponse.BodyHandlers.ofString()).body();
 
             var itemMediaAsset = mapper.readValue(responseString, ItemMediaApiResponse.class);
-            var jpegPath = itemMediaAsset.getAssets()
+            AtomicReference<String> jpegPath = new AtomicReference<>();
+            itemMediaAsset.getAssets()
                     .stream()
                     .filter(asset -> asset.getAssetType().equals("icon"))
                     .findFirst()
-                    .get()
-                    .getUrl();
+                    .ifPresent(mediaAsset -> jpegPath.set(mediaAsset.getUrl()));
 
             var query = UriComponentsBuilder
-                    .fromHttpUrl(jpegPath)
+                    .fromHttpUrl(jpegPath.get())
                     .queryParam("access_token", battleNetOAuth2Helper.getToken())
                     .build();
 

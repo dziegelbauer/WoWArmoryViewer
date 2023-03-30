@@ -3,8 +3,6 @@ package org.ziegelbauer.wowarmoryviewer.model.dto.blizzardapi;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.util.Collection;
-
 @Data
 public class ItemRequirements {
     @JsonProperty("level")

@@ -1,6 +1,5 @@
 package org.ziegelbauer.wowarmoryviewer.services;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.ziegelbauer.wowarmoryviewer.model.dto.ItemData;
 import org.ziegelbauer.wowarmoryviewer.model.dto.ItemTooltipLine;
